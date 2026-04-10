@@ -1,0 +1,156 @@
+@import 'variables';
+
+body {
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #262729 !important;
+  border-bottom: 4px solid var(--accent);
+  padding: 0.8rem 0;
+}
+
+.navbar-brand {
+  color: #ececec !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.navbar-logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.2s;
+  border-radius: 50%; /* Since it's R.jpeg, likely a circular icon */
+}
+
+.navbar-logo:hover {
+  transform: scale(1.4);
+}
+
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://redemption-mesa.site/wp-content/uploads/2023/06/home-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.card-membership {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s, background-color 0.2s;
+  background-color: var(--gray-light);
+}
+
+/* .card-membership:hover {
+  transform: translateY(-5px);
+  background-color: #e0e0e0;
+} */
+
+.btn-membership {
+  background-color: var(--primary) !important;
+  color: var(--text-light) !important;
+  border-radius: 25px !important;
+  padding: 12px 25px !important;
+  border: 3px solid #a5a5a5 !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.btn-membership:hover {
+  background-color: var(--accent) !important;
+  color: var(--text-light) !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: var(--white);
+  border-right: 1px solid var(--gray-light);
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.sidebar-brand {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  display: block;
+  text-decoration: none;
+}
+
+.nav-section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.nav-chapter-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+  font-size: 0.95rem;
+}
+
+.nav-chapter-link:hover {
+  background-color: var(--gray-light);
+}
+
+.nav-chapter-link.active {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.chapter-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.chapter-status.completed {
+  color: #28a745;
+}
+
+.main-content-wrapper {
+  margin-left: 300px;
+  padding: 40px;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    left: -300px;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .main-content-wrapper {
+    margin-left: 0;
+  }
+}

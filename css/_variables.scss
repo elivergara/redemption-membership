@@ -1,0 +1,17 @@
+$primary: #8B0000; // Deep Red (Church feel)
+$secondary: #FDF5E6; // Old Lace / Warm Cream background
+$accent: #D2691E; // Cinnamon/Warm Brown
+$text-dark: #2C2C2C; // Soft Charcoal
+$text-light: #6f0000;
+$white: #FFFFFF;
+$gray-light: #E8E8E8;
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --accent: #{$accent};
+  --text-dark: #{$text-dark};
+  --text-light: #{$text-light};
+  --white: #{$white};
+  --gray-light: #{$gray-light};
+}
