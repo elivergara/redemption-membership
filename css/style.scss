@@ -231,14 +231,18 @@ body {
   top: 56px; // adjust this to match your navbar height
   left: 300px; // matches your sidebar width
   width: calc(100% - 300px);
-  height: 6px;
-  background-color: rgba(0, 0, 0, 0.08);
+  height: 12px;
+  background-color: var(--white);
   z-index: 1200;
 }
 
 .reading-progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, var(--primary), var(--accent));
+  height: 125%;
+  width: 12px;
+  // background: linear-gradient(to right, var(--primary), var(--accent));
+  // background: linear-gradient(to right, #548ab9, #122a40);
+  background: linear-gradient(to right, var(--primary), #FBAF33);
   transition: width 0.1s linear;
+  // box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(18, 42, 64, 0.4);
 }

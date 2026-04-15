@@ -161,5 +161,19 @@
         };
     </script>
 
+
+<script>
+  window.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('readingProgressBar');
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    progressBar.style.width = `${scrollPercent}%`;
+  });
+</script>
 </body>
 </html>

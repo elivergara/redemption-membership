@@ -75,6 +75,11 @@
         </div>
 
         <div class="chapter-container p-5 rounded-4 shadow-lg">
+
+<div class="reading-progress">
+  <div class="reading-progress-bar" id="readingProgressBar"></div>
+</div>
+
             <h1 class="display-6 fw-bold mb-4 chapter-title">ARTÍCULO 11: JESÚS</h1>
 
             <div class="content-body lead">
@@ -298,5 +303,19 @@
         };
     </script>
 
+
+<script>
+  window.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('readingProgressBar');
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    progressBar.style.width = `${scrollPercent}%`;
+  });
+</script>
 </body>
 </html>
