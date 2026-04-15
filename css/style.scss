@@ -1,0 +1,229 @@
+@import 'variables';
+
+body {
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #2a2b2d !important;
+  border-bottom: 4px solid var(--accent);
+  padding: 0.8rem 0;
+  width: 100%;
+}
+
+.navbar-chapter {
+  background-color: #2a2b2d !important;
+  border-bottom: 4px solid var(--accent);
+  padding: 0.4rem 0;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 300px);
+  left: 300px;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar-chapter .container {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+  padding-left: 20px;
+}
+
+.navbar-logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.2s;
+  border-radius: 50%;
+}
+
+.navbar-chapter .navbar-logo {
+  height: 40px;
+}
+
+.hero-section {
+  background: linear-gradient($gradient-light, $gradient-dark), url('https://redemption-mesa.site/wp-content/uploads/2023/06/home-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25vh 0 10rem 0;
+;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.card-membership {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s, background-color 0.2s;
+  background-color: var(--gray-light);
+}
+
+.card-membership:hover {
+    transform: translateY(-10px) scale(1.02); /* Lift effect on hover */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+.btn-membership {
+  background-color: var(--primary) !important;
+  color: var(--text-light) !important;
+  border-radius: 25px !important;
+  padding: 12px 25px !important;
+  border: 3px solid #666666 !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.btn-membership:hover {
+  background-color: var(--accent) !important;
+  color: var(--text-light) !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: var(--white);
+  border-right: 1px solid var(--gray-light);
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 1100; /* Higher than navbar */
+  transition: all 0.3s ease;
+}
+
+.sidebar-brand {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  display: block;
+  text-decoration: none;
+}
+
+.nav-section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.nav-chapter-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+  font-size: 0.95rem;
+}
+
+.nav-chapter-link:hover {
+  background-color: var(--gray-light);
+}
+
+.nav-chapter-link.active {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+.chapter-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.chapter-status.completed {
+  color: #28a745;
+}
+
+.main-content-wrapper {
+  margin-left: 300px;
+  padding: 40px;
+  background-color: #5b5e64 !important;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  padding-top: 85px; /* Space for navbar */
+}
+
+.chapter-container {
+  background-color: #fcfcfc !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
+  padding: 3.5rem !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 10 !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.chapter-title {
+  color: #10324f !important;
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 35px;
+  display: block !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
+.chapter-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.breadcrumb-item a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--text-light);
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    left: -300px;
+    top: 0;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .main-content-wrapper {
+    margin-left: 0;
+    padding-top: 85px;
+  }
+  .navbar {
+    left: 0;
+    width: 100%;
+  }
+}

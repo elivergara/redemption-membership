@@ -1,9 +1,17 @@
-@import 'variables';
+:root {
+  --primary: #1a568b;
+  --secondary: #FDF5E6;
+  --accent: #122a40;
+  --text-dark: #2C2C2C;
+  --text-light: #b8cee1;
+  --white: #eeeeee;
+  --gray-light: #E8E8E8;
+}
 
 body {
   background-color: var(--secondary);
   color: var(--text-dark);
-  font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -47,10 +55,14 @@ body {
 }
 
 .hero-section {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://redemption-mesa.site/wp-content/uploads/2023/06/home-hero.jpg');
+  background: linear-gradient(#548ab9, #254158), url("https://redemption-mesa.site/wp-content/uploads/2023/06/home-hero.jpg");
   background-size: cover;
   background-position: center;
-  color: white;
+  color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25vh 0 10rem 0;
   padding: 100px 0;
   text-align: center;
 }
@@ -58,22 +70,22 @@ body {
 .card-membership {
   border: none;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, background-color 0.2s;
   background-color: var(--gray-light);
 }
 
-/* .card-membership:hover {
-  transform: translateY(-5px);
-  background-color: #e0e0e0;
-} */
+.card-membership:hover {
+  transform: translateY(-10px) scale(1.02); /* Lift effect on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
 
 .btn-membership {
   background-color: var(--primary) !important;
   color: var(--text-light) !important;
   border-radius: 25px !important;
   padding: 12px 25px !important;
-  border: 3px solid #a5a5a5 !important;
+  border: 3px solid #666666 !important;
   transition: all 0.3s ease !important;
   text-decoration: none !important;
   display: inline-block !important;
@@ -85,7 +97,7 @@ body {
   background-color: var(--accent) !important;
   color: var(--text-light) !important;
   transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* SIDEBAR STYLES */
@@ -165,16 +177,16 @@ body {
 .chapter-container {
   background-color: #fcfcfc !important;
   border-radius: 24px !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
   padding: 3.5rem !important;
   display: block !important;
   position: relative !important;
   z-index: 10 !important;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .chapter-title {
-  color: #7a0000 !important;
+  color: #10324f !important;
   position: relative;
   padding-bottom: 20px;
   margin-bottom: 35px;
@@ -184,7 +196,7 @@ body {
 }
 
 .chapter-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -221,4 +233,4 @@ body {
     left: 0;
     width: 100%;
   }
-}
+}/*# sourceMappingURL=style.css.map */

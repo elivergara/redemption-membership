@@ -1,0 +1,26 @@
+{
+  "name": "redemption-membership",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass css/style.scss css/style.css",
+    "watch": "sass --watch css/style.scss css/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elivergara/redemption-membership.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/elivergara/redemption-membership/issues"
+  },
+  "homepage": "https://github.com/elivergara/redemption-membership#readme",
+  "devDependencies": {
+    "sass": "^1.99.0"
+  }
+}
