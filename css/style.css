@@ -6,6 +6,8 @@
   --text-light: #b8cee1;
   --white: #eeeeee;
   --gray-light: #E8E8E8;
+  --gradient-light: #548ab9;
+  --gradient-dark: #254158;
 }
 
 body {
@@ -62,7 +64,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25vh 0 10rem 0;
   padding: 100px 0;
   text-align: center;
 }

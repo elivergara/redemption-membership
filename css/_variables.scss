@@ -1,12 +1,12 @@
-$primary: #1a568b; // 
-$secondary: #FDF5E6; // Old Lace / Warm Cream background
-$accent: #122a40; // 
-$text-dark: #2C2C2C; // Soft Charcoal
+$primary: #1a568b;
+$secondary: #FDF5E6;
+$accent: #122a40;
+$text-dark: #2C2C2C;
 $text-light: #b8cee1;
 $white: #eeeeee;
 $gray-light: #E8E8E8;
-$gradient-light:#548ab9;
-$gradient-dark:#254158;
+$gradient-light: #548ab9;
+$gradient-dark: #254158;
 
 :root {
   --primary: #{$primary};
@@ -16,4 +16,6 @@ $gradient-dark:#254158;
   --text-light: #{$text-light};
   --white: #{$white};
   --gray-light: #{$gray-light};
+  --gradient-light: #{$gradient-light};
+  --gradient-dark: #{$gradient-dark};
 }
