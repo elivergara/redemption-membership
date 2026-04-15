@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo | Curso de Membresía</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar-chapter navbar-expand-lg navbar-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../assets/logos/R.jpeg" alt="Redemption Mesa" class="navbar-logo me-2">
-                Redemption Mesa
-            </a>
-        </div>
-    </nav>
+import os
+import re
 
-    
+directory = '/home/elivergara/Documents/redemption-membership/pages'
+files = [f for f in os.listdir(directory) if f.startswith('chapter_') and f.endswith('.html')]
+
+# --- CORE CONSTANTS ---
+# New sidebar HTML structure (must be updated for the final version)
+new_sidebar_html = r'''
     <!-- Sidebar Navigation -->
     <div class="sidebar" id="mainSidebar">
         
@@ -67,113 +55,55 @@
         <a href="chapter_33.html" class="nav-chapter-link" data-id="33">33. Promesa Miembros <span class="chapter-status" id="status-33">○</span></a>
         <a href="chapter_34.html" class="nav-chapter-link" data-id="34">34. Salida Sana <span class="chapter-status" id="status-34">○</span></a>
     </div>
-<div class="main-content-wrapper">
-        
-                <div class="d-flex align-items-center mb-4">
-            <a href="../index.html" class="btn btn-sm btn-outline-light px-3 py-1 rounded-pill shadow-sm">
-                <i class="fa-solid fa-house me-2"></i> Inicio
-            </a>
-        </div>
+'''
 
+# Regex for the pattern to find and replace specific text content in links (e.g., "chapter_23.html" link text)
+# We must escape characters that have special meaning in regex.
+def update_chapter_content(content, filename, old_id, new_id, old_title, new_title):
+    # 1. Update the link text/title/data-id within the sidebar
+    content = re.sub(r'data-id="' + re.escape(str(old_id)) + r'"', f'data-id="{new_id}"', content)
+    content = re.sub(r'<a href="chapter_' + re.escape(str(old_id)) + r'\.html"', f'<a href="chapter_{new_id}.html"', content)
+    # This is the hardest part: updating the visible text. We use a general pattern matching the surrounding text.
+    # Since we cannot reliably isolate *only* the title text without risking breaking surrounding tags, 
+    # we will replace the entire anchor tag for safety, IF the pattern is clean.
+    # For robustness, we will rely on updating the JS ID/link href, as the visible text is what's most likely to be hardcoded/duplicated.
 
-        <div class="chapter-container  p-5 rounded-4 shadow-sm">
-            <h1 class="display-5 fw-bold mb-4" style="color: var(--primary);">SECCIÓN 2 - DISTINTIVOS</h1>
-            
-            <div class="content-body lead">
-                <p>Aquí irá el contenido del material de membresía. Este espacio está diseñado para ser limpio, legible y enfocado en el mensaje.</p>
-                <hr class="my-5">
-                <h3><i class="fa-solid fa-circle-info me-2" style="font-size: 0.8rem; opacity: 0.7;"></i>ESTRUCTURA Y VISIÓN</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel eros ut turpis elementum varius. </p>
-            </div>
+    # 2. Update the JS constant
+    content = re.sub(r'const CHAPTER_ID = ".*?";', f'const CHAPTER_ID = "{new_id}";', content)
 
-            <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
-                <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill">
-                    <i class="fa-solid fa-chevron-left me-2"></i> Anterior
-                </a>
-                <button id="completeBtn" class="btn btn-membership btn-lg rounded-pill px-4">
-                    <i class="fa-solid fa-check me-2"></i> Marcar como completado
-                </button>
-                <a href="#" class="btn btn-membership btn-lg rounded-pill">
-                    Siguiente <i class="fa-solid fa-chevron-right ms-2"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+    # 3. Update Pagination Logic (Next Button)
+    content = content.replace('if (currentId < 33)', 'if (currentId < 34)')
+    content = content.replace('if (currentId < 34)', 'if (currentId < 34)') # Safety patch
 
+    return content
+
+# --- EXECUTION ---
+for filename in files:
+    path = os.path.join(directory, filename)
+    with open(path, 'r', encoding='utf-8') as f:
+        content = f.read()
     
-    <script>
-        const CHAPTER_ID = "28"; 
+    # 1. SYNC SIDEBAR (Attempting surgical replacement)
+    # We assume the sidebar container is always present, even if corrupted.
+    content = re.sub(r'id="mainSidebar">.*?</div', new_sidebar_html, content, flags=re.DOTALL | re.IGNORECASE)
 
-        // Update Sidebar Active State
-        document.querySelectorAll('.nav-chapter-link').forEach(link => {
-            if(link.getAttribute('data-id') === CHAPTER_ID) {
-                link.classList.add('active');
-            }
-        });
+    # 2. SYNC JS ID AND PAGINATION
+    try:
+        # Simple attempt to extract old ID from filename (e.g., chapter_23.html -> 23)
+        match = re.search(r'chapter_(\d+)\.html', filename)
+        old_id = match.group(1)
+        new_id = str(int(old_id) + 1) if old_id != '23' else '23'
+        
+        # Execute the update function
+        content = update_chapter_content(content, filename, old_id, new_id, "", "")
 
-        // Dynamic Navigation Logic
-        function setupNavigation() {
-            const prevBtn = document.querySelector('.btn-outline-secondary');
-            const nextBtn = document.querySelector('.btn-membership:not(#completeBtn)');
-            
-            const currentId = parseInt(CHAPTER_ID);
-            
-            if (currentId > 1) {
-                prevBtn.href = `chapter_${currentId - 1}.html`;
-            } else {
-                prevBtn.style.display = 'none';
-            }
-            
-            if (currentId < 34) {
-                nextBtn.href = `chapter_${currentId + 1}.html`;
-            } else {
-                nextBtn.style.display = 'none';
-            }
-        }
+    except Exception as e:
+        print(f"Skipping {filename} due to error during update: {e}")
+        pass
 
-        // Progress Tracking Logic
-        function updateStatus() {
-            const completed = JSON.parse(localStorage.getItem('membership_progress') || '[]');
-            document.querySelectorAll('.nav-chapter-link').forEach(link => {
-                const id = link.getAttribute('data-id');
-                const statusEl = document.getElementById('status-' + id);
-                if (statusEl && completed.includes(id)) {
-                    statusEl.innerHTML = '✓';
-                    statusEl.classList.add('completed');
-                }
-            });
-        }
+    # Write back the modified content
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"Successfully updated {filename}")
 
-        document.getElementById('completeBtn').addEventListener('click', function() {
-            let completed = JSON.parse(localStorage.getItem('membership_progress') || '[]');
-            if (!completed.includes(CHAPTER_ID)) {
-                completed.push(CHAPTER_ID);
-                localStorage.setItem('membership_progress', JSON.stringify(completed));
-                this.innerHTML = '<i class="fa-solid fa-check-double me-2"></i> ¡Completado!';
-                this.classList.replace('btn-membership', 'btn-success');
-            }
-            updateStatus();
-        });
-
-        window.onload = () => {
-            setupNavigation();
-            updateStatus();
-        };
-    </script>
-
-
-<script>
-  window.addEventListener('scroll', () => {
-    const progressBar = document.getElementById('readingProgressBar');
-    if (!progressBar) return;
-
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-
-    progressBar.style.width = `${scrollPercent}%`;
-  });
-</script>
-</body>
-</html>
+print("--- All chapter files have been updated with new IDs and sidebar structure. ---")
